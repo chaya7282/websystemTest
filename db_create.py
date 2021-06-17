@@ -1,2 +1,2 @@
-from main import db
+from webTest import db
 db.create_all()
