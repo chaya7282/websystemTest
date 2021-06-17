@@ -22,10 +22,10 @@ app = Flask(__name__)
 SQLALCHEMY_COMMIT_ON_TEARDOWN = True
 SQLALCHEMY_RECORD_QUERIES = True
 app.config['SECRET_KEY'] = 'secret'
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://b8ff07330af1f1:c66beaa7@us-cdbr-east-04.cleardb.com/heroku_e7818c97bf7c572'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql:
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-#app.config['SQLALCHEMY_DATABASE_URI']='postgresql+psycopg2://postgres:chaya@localhost/chayadb'
+#app.config['SQLALCHEMY_DATABASE_URI']='postgresql+psycopg2://qbsdrpzncxfnwl:76154e16537f644b775dbe31717f9016960b8492725cc3fd7f7415ef5856f7ce@ec2-3-212-75-25.compute-1.amazonaws.com:5432/d7den0ai7rfc4a'
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 #app.config['SQLALCHEMY_DATABASE_URI'] ='sqlite:///site.db'
 db = SQLAlchemy(app)
