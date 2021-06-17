@@ -17,7 +17,7 @@ from flask_wtf.file import FileField, FileAllowed,  FileRequired
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from flask_wtf import FlaskForm
 from webTest import app,db
-
+from webTest.models import Product2
 
 
 class ProductForm(FlaskForm):
@@ -31,14 +31,6 @@ class ProductForm(FlaskForm):
     submit = SubmitField('Post')
 
 
-class Product2(db.Model):
-    __tablename__ = 'product2'
-    id = db.Column(db.Integer, primary_key=True)
-    company= db.Column(db.String(20), nullable=False)
-    name= db.Column(db.String(20), nullable=False)
-    description= db.Column(db.Text, nullable=True)
-    price= db.Column(db.Integer, nullable=False)
-    group_type=  db.Column(db.String(20), nullable=False, default='All')
 
 
 
