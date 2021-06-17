@@ -18,20 +18,6 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationE
 from flask_wtf import FlaskForm
 from webTest import app,db
 from webTest.models import Product2
-
-
-class ProductForm(FlaskForm):
-
-    company = StringField('What is the company name?', validators=[DataRequired()])
-    name = StringField('What is the product name?', validators=[DataRequired()])
-    description = TextAreaField('Give a product description', validators=[DataRequired()])
-    price = IntegerField('What is the price?', validators=[DataRequired()])
-    picture = FileField('Product Picture',validators=[FileRequired(), FileAllowed(['jpg', 'png'], 'Images only!')])
-
-    submit = SubmitField('Post')
-
-
-
-
 if __name__ == '__main__':
+
     app.run()
