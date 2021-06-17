@@ -4,7 +4,7 @@ from flask_wtf.file import FileField, FileAllowed,  FileRequired
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from flask_wtf import FlaskForm
 from webTest import app,db
-from webTest.models import Product2
+from webTest.models import Product
 
 
 class ProductForm(FlaskForm):
@@ -24,7 +24,7 @@ class ProductForm(FlaskForm):
 
 #@requires_roles('Admin','Agent')
 def products():
-    products = Product2.query.all()
+    products = Product.query.all()
     print(len(products))
 
     return render_template('test5.html',products=products)
@@ -39,7 +39,7 @@ def new_product():
        # picture_file = save_picture(form.picture.data)
        # image_file= url_for('static', filename='profile_pics/' + picture_file)
         select = request.form.get('group_products')
-        product = Product2(company=form.company.data, name=form.name.data,
+        product = Product(company=form.company.data, name=form.name.data,
                           description=form.description.data, price= form.price.data,group_type=select)
         db.session.add(product)
         product.company=form.company.data
