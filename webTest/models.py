@@ -1,6 +1,6 @@
 from datetime import datetime
 from webTest import db
-
+from flask_login import UserMixin
 
 from sqlalchemy import DateTime
 from sqlalchemy import event
