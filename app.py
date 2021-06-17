@@ -33,43 +33,5 @@ class ProductForm(FlaskForm):
 
 
 
-
-
-
-@app.route("/products")
-
-#@requires_roles('Admin','Agent')
-def products():
-    products = Product2.query.all()
-    print(len(products))
-
-    return render_template('test5.html',products=products)
-
-
-
-
-@app.route('/', methods=['GET', 'POST'])
-def new_product():
-    form = ProductForm()
-    if request.method == 'POST':
-       # picture_file = save_picture(form.picture.data)
-       # image_file= url_for('static', filename='profile_pics/' + picture_file)
-        select = request.form.get('group_products')
-        product = Product2(company=form.company.data, name=form.name.data,
-                          description=form.description.data, price= form.price.data,group_type=select)
-        db.session.add(product)
-        product.company=form.company.data
-        db.session.commit()
-    else:
-        return render_template('add_product.html', title='add_product', form=form)
-
-    return redirect(url_for('products'))
-
-
-@app.route('/<name>')
-def hello_name(name):
-    return "Hello {}!".format(name)
-
-
 if __name__ == '__main__':
     app.run()
