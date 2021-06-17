@@ -1,12 +1,12 @@
 #from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
-from flask_login import LoginManager
+
 # This is a sample Python script.
-import psycopg2
+
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
+
 import flask_sqlalchemy
 import sqlalchemy.dialects.postgresql
 from sqlalchemy.dialects import postgresql
@@ -67,7 +67,7 @@ def products():
 
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def new_product():
     form = ProductForm()
     if request.method == 'POST':
@@ -79,6 +79,8 @@ def new_product():
         db.session.add(product)
         product.company=form.company.data
         db.session.commit()
+    else:
+        return render_template('add_product.html', title='add_product', form=form)
 
     return redirect(url_for('products'))
 
