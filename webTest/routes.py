@@ -5,8 +5,9 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationE
 from flask_wtf import FlaskForm
 from webTest import app,db
 from webTest.models import Product, Store
-
-
+import secrets
+from PIL import Image
+import os
 class ProductForm(FlaskForm):
 
     company = StringField('What is the company name?', validators=[DataRequired()])
@@ -26,7 +27,7 @@ def products():
     products = Product.query.all()
     print(len(products))
 
-    return render_template('test5.html',products=products)
+    return render_template('products.html',products=products)
 
 @app.route("/product/<int:product_id>/update", methods=['GET', 'POST'])
 def update_product_details(product_id):
@@ -59,17 +60,29 @@ def add_product_to_store(product_id):
         flash('Your item was added!', 'success')
     return redirect(url_for('store'))
 
+def save_picture(form_picture):
+    random_hex = secrets.token_hex(8)
+    _, f_ext = os.path.splitext(form_picture.filename)
+    picture_fn = random_hex + f_ext
+    picture_path = os.path.join(app.root_path, 'static/product_picture', picture_fn)
+    output_size = (1280, 720)
+    i = Image.open(form_picture)
+    i.thumbnail(output_size)
+    i.save(picture_path)
+
+    return picture_fn
+
 
 
 @app.route('/', methods=['GET', 'POST'])
 def new_product():
     form = ProductForm()
     if request.method == 'POST':
-       # picture_file = save_picture(form.picture.data)
-       # image_file= url_for('static', filename='profile_pics/' + picture_file)
+        picture_file = save_picture(form.picture.data)
+        image_file= url_for('static', filename='product_picture/' + picture_file)
         select = request.form.get('group_products')
         product = Product(company=form.company.data, name=form.name.data,
-                          description=form.description.data, price= form.price.data,group_type=select)
+                          description=form.description.data, price= form.price.data,group_type=select,image_file=image_file)
         db.session.add(product)
         product.company=form.company.data
         db.session.commit()
