@@ -133,8 +133,8 @@ img {
       <div class="card">
         <div class="card_image"><img src={{product.image_file}}></div>
         <div class="card_content">
-          <h2 class="card_title">Card Grid Layout</h2>
-          <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
+          <h2 class="card_title">{{product.name}}</h2>
+          <p class="card_text">{{product.price}}</p>
              <button class="btn card_btn" onclick= "window.location.href='{{ url_for('update_product_details',product_id=product.id) }}'" >Update</button>
              <button class="btn card_btn" onclick= "window.location.href='{{ url_for('add_product_to_store',product_id=product.id) }}'" >To Store</button>
              <button class="btn card_btn" onclick= "window.location.href='{{ url_for('remove_product_from_inventory',product_id=product.id) }}'" >Remove</button>
