@@ -1,0 +1,23 @@
+<head>
+<link rel = "stylesheet" type = "text/css" href = "{{ url_for('static', filename='product_page.CSS') }}" >
+<link rel="stylesheet" type ="text/css"  href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet"  type="text/css"  href="/static/storeStyleIcons.CSS" >
+<link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" >
+<script src = "https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" > </script>
+<link rel="stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+ {%for product in products%}
+ <div class ="card" >
+ <h3> {{product.name}}</h3>
+<p class ="price"> {{product.price}}</p>
+<div class ="btn-group" >
+
+<button onclick= "window.location.href='{{ url_for('update_product_details',product_id=product.id) }}'" >Update</button>
+ <button onclick= "window.location.href='{{ url_for('add_product_to_store',product_id=product.id) }}'" >Update</button>
+</div>
+
+</div>
+{%endfor%}
+
+</body>
