@@ -39,8 +39,7 @@ def update_product_details(product_id):
         product.price = form.price.data
         product.description= form.description.data
         db.session.commit()
-        flash('Your post has been updated!', 'success')
-        return redirect(url_for('inventory_managment'))
+        return redirect(url_for('products'))
     elif request.method == 'GET':
         form.name.data= '{element}'.format(element=product.name)
         form.company.data='{element}'.format(element=product.company)
