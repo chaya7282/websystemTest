@@ -46,7 +46,8 @@ def update_product_details(product_id):
         form.company.data='{element}'.format(element=product.company)
         form.price.data = '{element}'.format(element=product.price)
         form.description.data = '{element}'.format(element=product.description)
-
+        image_file = url_for('static', filename='profile_pics/' + product.image_file)
+        form.picture.data.save(product.image_file)
         return render_template('add_product.html', title='Update Product',form=form, legend='Update')
 
 @app.route("/product/<int:product_id>/add_product_to_store", methods=['GET', 'POST'])
