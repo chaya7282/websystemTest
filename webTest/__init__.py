@@ -24,9 +24,9 @@ app.config['SECRET_KEY'] = 'secret'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 #app.config['SQLALCHEMY_DATABASE_URI']='postgresql+psycopg2://qbsdrpzncxfnwl:76154e16537f644b775dbe31717f9016960b8492725cc3fd7f7415ef5856f7ce@ec2-3-212-75-25.compute-1.amazonaws.com:5432/d7den0ai7rfc4a'
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+#app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 
-#app.config['SQLALCHEMY_DATABASE_URI'] ='sqlite:///site.db'
+app.config['SQLALCHEMY_DATABASE_URI'] ='sqlite:///site.db'
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 from webTest import routes
