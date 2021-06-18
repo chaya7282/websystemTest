@@ -26,7 +26,7 @@ def products():
     products = Product.query.all()
     print(len(products))
 
-    return render_template('products.html',products=products)
+    return render_template('test5.html',products=products)
 
 @app.route("/product/<int:product_id>/update", methods=['GET', 'POST'])
 def update_product_details(product_id):
