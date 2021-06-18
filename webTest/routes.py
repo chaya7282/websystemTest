@@ -21,7 +21,6 @@ class ProductForm(FlaskForm):
 
 
 @app.route("/products")
-
 #@requires_roles('Admin','Agent')
 def products():
     products = Product.query.all()
@@ -30,7 +29,6 @@ def products():
     return render_template('products.html',products=products)
 
 @app.route("/product/<int:product_id>/update", methods=['GET', 'POST'])
-
 def update_product_details(product_id):
     product = Product.query.get_or_404(product_id)
     form = ProductForm()
@@ -78,6 +76,14 @@ def new_product():
         db.session.commit()
     else:
         return render_template('add_product.html', title='add_product', form=form)
+
+    return redirect(url_for('products'))
+
+@app.route("/product/<int:product_id>/remove_product_from_inventory", methods=['GET', 'POST'])
+def remove_product_from_inventory(product_id):
+    product =Product.query.get_or_404(product_id)
+    db.session.delete(product)
+    db.session.commit()
 
     return redirect(url_for('products'))
 
